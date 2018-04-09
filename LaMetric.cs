@@ -24,6 +24,32 @@ namespace SmartPesa.Workflow
         private Int64 _txnCounter = 0;
         private DateTime _lastRequest;
 
+        /*
+          spWorkflow.spring
+          =================
+          <objects> 
+            <object name="lametric" type="SmartPesa.Workflow.LaMetric,LaMetric"></object>
+          </objects> 
+          
+          spWorkflow.config
+          =================
+          <Workflow>
+            <Destinations>
+              <add key="lametric" type="LaMetric" active="true" subscriber="true" />
+            </Destinations>
+          </Workflow>
+         
+          <LaMetric>
+            <requestSettings>
+              <add key="url" value="https://developer.lametric.com/api/V1/dev/widget/update/com.lametric.[unique-uri]" />
+              <add key="accessToken" value="[secret]" />
+              <add key="icon" value="i59" />
+              <add key="index" value="0" />
+              <add key="interval" value="60" /> <!-- seconds -->
+            </requestSettings>
+          </LaMetric>
+        */
+
         public LaMetric()
         {
             _log.Info(" -> Loading LaMetric settings");
