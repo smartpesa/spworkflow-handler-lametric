@@ -7,12 +7,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmartPesa.Workflow
 {
@@ -59,7 +56,7 @@ namespace SmartPesa.Workflow
 
         public override object ProcessMessage(object payload)
         {
-            var newPayment = JsonConvert.DeserializeObject<Payment>((string)payload);
+            Payment newPayment = JsonConvert.DeserializeObject<Payment>((string)payload);
             _log.InfoFormat("     {0}{1}{2}", newPayment.TransactionRef, newPayment.Amount.ToString().PadLeft(20).PadRight(40), newPayment.ResponseCode);
             if (newPayment.ResponseCode == ResponseCodes.Approved)
             {
